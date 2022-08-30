@@ -15,6 +15,8 @@ class ConfigProvider
     public function __invoke()
     {
         return [
+            'dependencies' => [
+            ],
             'publish' => [
                 [
                     'id' => 'config',
