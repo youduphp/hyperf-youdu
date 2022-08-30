@@ -26,8 +26,10 @@ class ApplicationFactory
         }
     }
 
-    public function get(string $name): Application
+    public function get(?string $name = null): Application
     {
+        $name ??= $this->config->get('youdu.default', 'default');
+
         if (! isset($this->applications[$name])) {
             throw new \RuntimeException(sprintf('The application "%s" is not exists.', $name));
         }

@@ -31,7 +31,7 @@ class Youdu
         return self::application()->{$name}(...$arguments);
     }
 
-    public static function application(string $name = 'default'): Application
+    public static function application(?string $name = null): Application
     {
         /** @var ContainerInterface $container */
         $container = ApplicationContext::getContainer();
