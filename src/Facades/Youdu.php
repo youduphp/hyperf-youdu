@@ -28,10 +28,10 @@ class Youdu
 {
     public static function __callStatic($name, $arguments)
     {
-        return self::application()->{$name}(...$arguments);
+        return self::app()->{$name}(...$arguments);
     }
 
-    public static function application(?string $name = null): Application
+    public static function app(?string $name = null): Application
     {
         /** @var ContainerInterface $container */
         $container = ApplicationContext::getContainer();
