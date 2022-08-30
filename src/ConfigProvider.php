@@ -14,6 +14,15 @@ class ConfigProvider
 {
     public function __invoke()
     {
-        return [];
+        return [
+            'publish' => [
+                [
+                    'id' => 'config',
+                    'description' => 'The config for hyperf-youdu.',
+                    'source' => __DIR__ . '/../publish/youdu.php',
+                    'destination' => BASE_PATH . '/config/autoload/youdu.php',
+                ],
+            ],
+        ];
     }
 }
