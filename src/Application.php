@@ -43,12 +43,11 @@ class Application
         if (is_null($app)) {
             /** @var ConfigInterface $config */
             $config = $this->container->get(ConfigInterface::class);
-            $name = $this->name;
             $api = $config->get('youdu.api', '');
             $buin = (int) $config->get('youdu.buin', 0);
             $timeout = (int) $config->get('youdu.timeout', 5);
             $tmpPath = is_writable($config->get('youdu.tmp_path')) ? $config->get('youdu.tmp_path') : '/tmp';
-            $item = $config->get('youdu.applications.' . $name, []);
+            $item = $config->get('youdu.applications.' . $this->name, []);
 
             $appConfig = new Config([
                 'api' => $api,
