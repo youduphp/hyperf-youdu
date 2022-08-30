@@ -12,7 +12,7 @@ namespace YouduPhp\HyperfYoudu;
 
 use Hyperf\Contract\ConfigInterface;
 
-class Factory
+class ApplicationFactory
 {
     /**
      * @var Application[]
