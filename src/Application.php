@@ -12,6 +12,7 @@ namespace YouduPhp\HyperfYoudu;
 
 use GuzzleHttp\ClientInterface;
 use Hyperf\Contract\ConfigInterface;
+use Hyperf\Guzzle\ClientFactory;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
 use YouduPhp\Youdu\Application as App;
@@ -71,6 +72,16 @@ class Application
 
     protected function getClient(): ?ClientInterface
     {
-        return null;
+        /** @var ConfigInterface $config */
+        $config = $this->container->get(ConfigInterface::class);
+        $options = [
+            'base_uri' => $config->get('youdu.api', ''),
+            'timeout' => (int) $config->get('youdu.timeout', 5),
+        ];
+
+        /** @var ClientFactory $clientFactory */
+        $clientFactory = $this->container->get(ClientFactory::class);
+
+        return $clientFactory->create($options);
     }
 }
