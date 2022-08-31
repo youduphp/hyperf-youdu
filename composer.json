@@ -1,12 +1,12 @@
 {
-    "name": "youduphp/laravel-youdu",
-    "description": "The youdu component for laravel",
+    "name": "youduphp/hyperf-youdu",
+    "description": "The youdu component for hyperf.",
     "type": "library",
     "keywords": [
-        "laravel",
+        "hyperf",
         "youdu"
     ],
-    "homepage": "https://github.com/youduphp/laravel-youdu",
+    "homepage": "https://github.com/youduphp/hyperf-youdu",
     "license": "MIT",
     "authors": [{
         "name": "huangdijia",
