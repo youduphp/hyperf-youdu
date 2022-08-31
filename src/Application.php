@@ -48,6 +48,10 @@ class Application
             /** @var ConfigInterface $config */
             $config = $container->get(ConfigInterface::class);
 
+            if (! $config->has("youdu.applications.{$this->name}")) {
+                throw new \RuntimeException(sprintf('The application "%s" is not exists.', $this->name));
+            }
+
             $appConfig = new Config([
                 'api' => (string) $config->get('youdu.api', ''),
                 'timeout' => (int) $config->get('youdu.timeout', 5),
