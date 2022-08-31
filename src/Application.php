@@ -49,7 +49,7 @@ class Application
             $config = $container->get(ConfigInterface::class);
 
             $appConfig = new Config([
-                'api' => $config->get('youdu.api', ''),
+                'api' => (string) $config->get('youdu.api', ''),
                 'timeout' => (int) $config->get('youdu.timeout', 5),
                 'buin' => (int) $config->get('youdu.buin', 0),
                 'app_id' => (string) $config->get("youdu.applications.{$this->name}.app_id", ''),
@@ -78,7 +78,7 @@ class Application
         $clientFactory = $container->get(ClientFactory::class);
 
         return $clientFactory->create([
-            'base_uri' => $config->get('youdu.api', ''),
+            'base_uri' => (string) $config->get('youdu.api', ''),
             'timeout' => (int) $config->get('youdu.timeout', 5),
         ]);
     }
