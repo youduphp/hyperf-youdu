@@ -13,6 +13,7 @@ namespace YouduPhp\HyperfYoudu;
 use GuzzleHttp\ClientInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Guzzle\ClientFactory;
+use Hyperf\Utils\ApplicationContext;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
 use YouduPhp\Youdu\Application as App;
@@ -25,7 +26,7 @@ class Application
 {
     protected string $name = 'default';
 
-    public function __construct(protected ContainerInterface $container, ?string $name = null)
+    public function __construct(?string $name = null)
     {
         if (! is_null($name)) {
             $this->name = $name;
@@ -42,21 +43,18 @@ class Application
         static $app = null;
 
         if (is_null($app)) {
+            /** @var ContainerInterface $container */
+            $container = ApplicationContext::getContainer();
             /** @var ConfigInterface $config */
-            $config = $this->container->get(ConfigInterface::class);
-            $api = $config->get('youdu.api', '');
-            $buin = (int) $config->get('youdu.buin', 0);
-            $timeout = (int) $config->get('youdu.timeout', 5);
-            $tmpPath = is_writable($config->get('youdu.tmp_path')) ? $config->get('youdu.tmp_path') : '/tmp';
-            $item = $config->get('youdu.applications.' . $this->name, []);
+            $config = $container->get(ConfigInterface::class);
 
             $appConfig = new Config([
-                'api' => $api,
-                'timeout' => $timeout,
-                'buin' => $buin,
-                'app_id' => $item['app_id'] ?? '',
-                'aes_key' => $item['aes_key'] ?? '',
-                'tmp_path' => $tmpPath,
+                'api' => $config->get('youdu.api', ''),
+                'timeout' => (int) $config->get('youdu.timeout', 5),
+                'buin' => (int) $config->get('youdu.buin', 0),
+                'app_id' => (string) $config->get("youdu.applications.{$this->name}.app_id", ''),
+                'aes_key' => (string) $config->get("youdu.applications.{$this->name}.aes_key", ''),
+                'tmp_path' => is_writable($config->get('youdu.tmp_path')) ? $config->get('youdu.tmp_path') : '/tmp',
             ]);
 
             $app = new App($appConfig, $this->getClient(), $this->getCache());
@@ -72,16 +70,16 @@ class Application
 
     protected function getClient(): ?ClientInterface
     {
+        /** @var ContainerInterface $container */
+        $container = ApplicationContext::getContainer();
         /** @var ConfigInterface $config */
-        $config = $this->container->get(ConfigInterface::class);
-        $options = [
+        $config = $container->get(ConfigInterface::class);
+        /** @var ClientFactory $clientFactory */
+        $clientFactory = $container->get(ClientFactory::class);
+
+        return $clientFactory->create([
             'base_uri' => $config->get('youdu.api', ''),
             'timeout' => (int) $config->get('youdu.timeout', 5),
-        ];
-
-        /** @var ClientFactory $clientFactory */
-        $clientFactory = $this->container->get(ClientFactory::class);
-
-        return $clientFactory->create($options);
+        ]);
     }
 }
