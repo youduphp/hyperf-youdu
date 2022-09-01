@@ -14,7 +14,13 @@ class ConfigProvider
 {
     public function __invoke()
     {
+        defined('BASE_PATH') || define('BASE_PATH', dirname(__DIR__, 2));
+
         return [
+            'dependencies' => [
+                'youdu.guzzle.client' => ClientFactory::class,
+                'youdu.cache' => CacheFactory::class,
+            ],
             'publish' => [
                 [
                     'id' => 'config',

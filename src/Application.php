@@ -12,7 +12,7 @@ namespace YouduPhp\HyperfYoudu;
 
 use GuzzleHttp\ClientInterface;
 use Hyperf\Contract\ConfigInterface;
-use Hyperf\Guzzle\ClientFactory;
+use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\ApplicationContext;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
@@ -25,6 +25,12 @@ use YouduPhp\Youdu\Config;
 class Application
 {
     protected string $name = 'default';
+
+    #[Inject(value: 'youdu.guzzle.client', required: false)]
+    protected ?ClientInterface $client = null;
+
+    #[Inject(value: 'youdu.cache', required: false)]
+    protected ?CacheInterface $cache = null;
 
     public function __construct(?string $name = null)
     {
@@ -61,29 +67,9 @@ class Application
                 'tmp_path' => is_writable($config->get('youdu.tmp_path')) ? $config->get('youdu.tmp_path') : '/tmp',
             ]);
 
-            $app = new App($appConfig, $this->getClient(), $this->getCache());
+            $app = new App($appConfig, $this->client, $this->cache);
         }
 
         return $app;
-    }
-
-    protected function getCache(): ?CacheInterface
-    {
-        return null;
-    }
-
-    protected function getClient(): ?ClientInterface
-    {
-        /** @var ContainerInterface $container */
-        $container = ApplicationContext::getContainer();
-        /** @var ConfigInterface $config */
-        $config = $container->get(ConfigInterface::class);
-        /** @var ClientFactory $clientFactory */
-        $clientFactory = $container->get(ClientFactory::class);
-
-        return $clientFactory->create([
-            'base_uri' => (string) $config->get('youdu.api', ''),
-            'timeout' => (int) $config->get('youdu.timeout', 5),
-        ]);
     }
 }
