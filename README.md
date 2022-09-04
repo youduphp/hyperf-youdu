@@ -26,7 +26,7 @@ php bin/hyperf.php vendor:publish youduphp/hyperf-youdu
 ### Send text message
 
 ```php
-use YouduPhp\HyperfYoudu\ApplicationFactory;
+use YouduPhp\HyperfYoudu\Facades\Youdu;
 
 
 Youdu::message()->send('user1|user2', 'dept1|dept2', 'test'); // send to user and dept
