@@ -22,7 +22,7 @@ jobs:
 
         with:
           php-version: ${{ matrix.php-versions }}
-          extension-csv: mbstring, xdebug
+          extension-csv: mbstring, xdebug, swoole
           ini-values-csv: "post_max_size=256M, short_open_tag=On"
           coverage: xdebug
 
