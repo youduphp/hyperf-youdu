@@ -44,9 +44,9 @@ jobs:
       - name: Run Cs Fixer
         run: |
           if [ "${{ matrix.php-versions }}" == "8.2" ]; then
-            PHP_CS_FIXER_IGNORE_ENV=true vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=estimating
+            PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=estimating
           else
-            php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=estimating
+            ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=estimating
           fi
 
       - name: Run PHPStan
