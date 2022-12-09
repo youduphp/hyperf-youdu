@@ -15,6 +15,7 @@ use Hyperf\Contract\ConfigInterface;
 use Hyperf\Utils\ApplicationContext;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
+use RuntimeException;
 use YouduPhp\Youdu\Application as App;
 use YouduPhp\Youdu\Config;
 
@@ -46,7 +47,7 @@ class Application
             $config = $this->getContainer()->get(ConfigInterface::class);
 
             if (! $config->has("youdu.applications.{$this->name}")) {
-                throw new \RuntimeException(sprintf('The application "%s" is not exists.', $this->name));
+                throw new RuntimeException(sprintf('The application "%s" is not exists.', $this->name));
             }
 
             $appConfig = new Config([

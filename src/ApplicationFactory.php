@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace YouduPhp\HyperfYoudu;
 
 use Hyperf\Contract\ConfigInterface;
+use RuntimeException;
 
 class ApplicationFactory
 {
@@ -31,7 +32,7 @@ class ApplicationFactory
         $name ??= $this->config->get('youdu.default', 'default');
 
         if (! isset($this->applications[$name])) {
-            throw new \RuntimeException(sprintf('The application "%s" is not exists.', $name));
+            throw new RuntimeException(sprintf('The application "%s" is not exists.', $name));
         }
 
         return $this->applications[$name];
