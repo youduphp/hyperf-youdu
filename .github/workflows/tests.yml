@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: Run PHPStan
-        run: phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./publish
+        run: vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./publish
 
       - name: Run Test
         run: |
