@@ -17,16 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      # - name: Install PHP
-      #   uses: shivammathur/setup-php@master
-
-      #   with:
-      #     php-version: ${{ matrix.php-versions }}
-      #     extension-csv: mbstring, xdebug
-      #     ini-values-csv: "post_max_size=256M, short_open_tag=On"
-      #     coverage: xdebug
-
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
