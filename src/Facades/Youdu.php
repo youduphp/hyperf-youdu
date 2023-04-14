@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 namespace YouduPhp\HyperfYoudu\Facades;
 
-use Hyperf\Utils\ApplicationContext;
+use Hyperf\Context\ApplicationContext;
 use Psr\Container\ContainerInterface;
 use YouduPhp\HyperfYoudu\Application;
 use YouduPhp\HyperfYoudu\ApplicationFactory;
