@@ -11,8 +11,8 @@ declare(strict_types=1);
 namespace YouduPhp\HyperfYoudu;
 
 use GuzzleHttp\ClientInterface;
+use Hyperf\Context\ApplicationContext;
 use Hyperf\Contract\ConfigInterface;
-use Hyperf\Utils\ApplicationContext;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
 use RuntimeException;
