@@ -21,9 +21,9 @@
         "youduphp/youdu": "^1.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "phpstan/phpstan": "^1.0",
-        "pestphp/pest": "^1.21"
+        "huangdijia/php-coding-standard": "^1.1",
+        "pestphp/pest": "^1.21",
+        "phpstan/phpstan": "^1.0"
     },
     "autoload": {
         "psr-4": {
