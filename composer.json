@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "huangdijia/php-coding-standard": "^1.1",
-        "pestphp/pest": "^1.21",
+        "pestphp/pest": "^1.21|^2.0",
         "phpstan/phpstan": "^1.0"
     },
     "autoload": {
