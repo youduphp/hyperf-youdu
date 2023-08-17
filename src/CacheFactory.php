@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @document https://github.com/youduphp/hyperf-youdu/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
+
 namespace YouduPhp\HyperfYoudu;
 
 use Psr\Container\ContainerInterface;
