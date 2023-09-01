@@ -14,20 +14,19 @@ namespace YouduPhp\HyperfYoudu;
 use GuzzleHttp\ClientInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Guzzle\ClientFactory as GuzzleClientFactory;
-use Psr\Container\ContainerInterface;
 
-class ClientFactory
+class ClientFactory extends \YouduPhp\Youdu\Kernel\HttpClient\ClientFactory
 {
-    public function __invoke(ContainerInterface $container): ?ClientInterface
+    public function __construct(private GuzzleClientFactory $factory, private ConfigInterface $config)
     {
-        /** @var ConfigInterface $config */
-        $config = $container->get('config');
-        /** @var GuzzleClientFactory $factory */
-        $factory = $container->get(GuzzleClientFactory::class);
-
-        return $factory->create([
+        $this->options = [
             'base_uri' => (string) $config->get('youdu.api', ''),
             'timeout' => (int) $config->get('youdu.timeout', 5),
-        ]);
+        ];
+    }
+
+    public function create(array $options = []): ClientInterface
+    {
+        return $this->factory->create(array_merge($this->options, $options));
     }
 }

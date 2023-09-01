@@ -11,13 +11,6 @@ declare(strict_types=1);
 
 namespace YouduPhp\HyperfYoudu;
 
-use Psr\Container\ContainerInterface;
-use Psr\SimpleCache\CacheInterface;
-
-class CacheFactory
+interface CacheInterface extends \Psr\SimpleCache\CacheInterface
 {
-    public function __invoke(ContainerInterface $container): ?CacheInterface
-    {
-        return null;
-    }
 }

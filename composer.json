@@ -38,7 +38,7 @@
     "scripts": {
         "test": "@php vendor/bin/pest",
         "cs-fix": "@php vendor/bin/php-cs-fixer fix $1",
-        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./publish"
+        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon "
     },
     "extra": {
         "laravel": {
