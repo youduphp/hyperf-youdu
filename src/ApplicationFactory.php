@@ -14,6 +14,8 @@ namespace YouduPhp\HyperfYoudu;
 use Hyperf\Contract\ConfigInterface;
 use RuntimeException;
 
+use function Hyperf\Support\make;
+
 class ApplicationFactory
 {
     /**

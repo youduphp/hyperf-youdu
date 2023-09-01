@@ -8,6 +8,8 @@ declare(strict_types=1);
  * @document https://github.com/youduphp/hyperf-youdu/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
+use function Hyperf\Support\env;
+
 return [
     'api' => env('YOUDU_API', ''),
     'buin' => (int) env('YOUDU_BUIN', 0),

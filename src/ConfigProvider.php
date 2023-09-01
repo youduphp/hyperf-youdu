@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace YouduPhp\HyperfYoudu;
 
+use Hyperf\Engine\Contract\Http\V2\ClientFactoryInterface;
+
 class ConfigProvider
 {
     public function __invoke()
@@ -19,8 +21,7 @@ class ConfigProvider
 
         return [
             'dependencies' => [
-                'youdu.guzzle.client' => ClientFactory::class,
-                'youdu.cache' => CacheFactory::class,
+                ClientFactoryInterface::class => ClientFactory::class,
             ],
             'publish' => [
                 [
