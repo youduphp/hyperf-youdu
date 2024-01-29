@@ -26,7 +26,7 @@ class ApplicationFactory
     public function __construct(protected ConfigInterface $config)
     {
         foreach ($this->config->get('youdu.applications', []) as $name => $item) {
-            $this->applications[] = make(Application::class, ['name' => $name]);
+            $this->applications[$name] = make(Application::class, ['name' => $name]);
         }
     }
 
