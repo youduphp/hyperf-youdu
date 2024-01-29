@@ -41,10 +41,8 @@
         "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon "
     },
     "extra": {
-        "laravel": {
-            "providers": [
-                "YouduPhp\\HyperfYoudu\\ConfigProvider"
-            ]
+        "hyperf": {
+            "config": "YouduPhp\\HyperfYoudu\\ConfigProvider"
         }
     },
     "minimum-stability": "dev",
