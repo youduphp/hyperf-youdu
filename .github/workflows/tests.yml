@@ -42,7 +42,7 @@ jobs:
         run: php -m
 
       - name: Install Dependencies
-        run: composer install --dev
+        run: composer install
 
       - name: Run Cs Fixer
         run: php vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
