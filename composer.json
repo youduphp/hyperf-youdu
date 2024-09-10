@@ -43,9 +43,6 @@
     "extra": {
         "hyperf": {
             "config": "YouduPhp\\HyperfYoudu\\ConfigProvider"
-        },
-        "branch-alias": {
-            "dev-main": "2.x-dev"
         }
     },
     "minimum-stability": "dev",
